@@ -130,18 +130,3 @@ jobs:
         run: yarn publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create Release Assets
-        run: |
-          # Create a zip file of the dist folder
-          zip -r nepse-api-${{ github.event.release.tag_name }}.zip dist/
-
-      - name: Upload Release Assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./nepse-api-${{ github.event.release.tag_name }}.zip
-          asset_name: nepse-api-${{ github.event.release.tag_name }}.zip
-          asset_content_type: application/zip
