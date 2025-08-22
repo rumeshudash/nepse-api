@@ -101,16 +101,16 @@ const topTurnoverScrips = await nepse.getTopTenTurnoverScrips();
 // Market depth
 const marketDepth = await nepse.getMarketDepth('NICL');
 
-// Company details
-const companyDetails = await nepse.getCompanyDetails('NICL');
-const companyGraph = await nepse.getCompanyDailyGraph('NICL');
-const priceVolumeHistory = await nepse.getCompanyPriceVolumeHistory('NICL');
+// Security details
+const securityDetails = await nepse.getSecurityDetails('NICL');
+const securityGraph = await nepse.getSecurityDailyGraph('NICL');
+const securityPriceVolumeHistory = await nepse.getSecurityPriceVolumeHistory('NICL');
 
 // Today's price data
 const todaysPrice = await nepse.getTodaysPriceVolumeHistory();
 ```
 
-### Available Methods
+### Available Methods (Security)
 
 #### Market Data
 - `getMarketStatus()` - Get current market status
@@ -119,12 +119,11 @@ const todaysPrice = await nepse.getTodaysPriceVolumeHistory();
 - `getNepseSubIndices()` - Get sub-indices
 - `getLiveMarket()` - Get live market data
 
-#### Company Information
-- `getCompanyList(force?)` - Get list of all companies (cached by default)
+#### Security Information
 - `getSecurityList(force?)` - Get list of all securities (cached by default)
-- `getCompanyDetails(symbol)` - Get specific company details
-- `getCompanyDailyGraph(symbol)` - Get company's daily graph data
-- `getCompanyPriceVolumeHistory(symbol)` - Get company's price volume history
+- `getSecurityDetails(symbol)` - Get specific security details
+- `getSecurityDailyGraph(symbol)` - Get security's daily graph data
+- `getSecurityPriceVolumeHistory(symbol)` - Get security's price volume history
 
 #### Trading Data
 - `getFloorSheet(options?)` - Get floorsheet with optional filtering

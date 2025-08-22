@@ -2,9 +2,6 @@ import dummyData from '../data/DUMMY_DATA.json';
 import { IndexIDEnum } from '../enums';
 import {
   Company,
-  CompanyDailyGraph,
-  CompanyDetails,
-  CompanyPriceVolumeHistory,
   FloorSheet,
   IndexGraphData,
   LiveMarketData,
@@ -14,6 +11,9 @@ import {
   NepseIndex,
   NepseSubIndex,
   Security,
+  SecurityDailyGraph,
+  SecurityDetails,
+  SecurityPriceVolumeHistory,
   TodaysPrice,
   TopTenItem,
   TopTenTradeScripItem,
@@ -244,11 +244,11 @@ export class Nepse extends BaseNepse {
     });
 
     if (options?.symbol) {
-      const companyId = (await this.getCompanyIdKeymap()).get(options.symbol);
-      if (!companyId) {
-        throw new Error(`Company symbol ${options.symbol} not found`);
+      const securityId = (await this.getSecurityIdKeymap()).get(options.symbol);
+      if (!securityId) {
+        throw new Error(`Security symbol ${options.symbol} not found`);
       }
-      queryParams.set('stockId', companyId.toString());
+      queryParams.set('stockId', securityId.toString());
     }
 
     if (options?.buyerBroker) {
@@ -281,73 +281,73 @@ export class Nepse extends BaseNepse {
    * @returns MarketDepth
    */
   async getMarketDepth(symbol: string) {
-    const companyId = (await this.getCompanyIdKeymap()).get(symbol);
-    if (!companyId) {
-      throw new Error(`Company symbol ${symbol} not found`);
+    const securityId = (await this.getSecuritySymbolIdKeymap()).get(symbol);
+    if (!securityId) {
+      throw new Error(`Security symbol ${symbol} not found`);
     }
 
     return await this.requestGETAPI<MarketDepth>(
-      `${this.apiEndpoints['market-depth']}/${companyId}`
+      `${this.apiEndpoints['market-depth']}/${securityId}`
     );
   }
 
   /**
-   * Get the company details
-   * @param symbol - The symbol of the company
-   * @returns CompanyDetails
+   * Get the security details
+   * @param symbol - The symbol of the security
+   * @returns SecurityDetails
    */
-  async getCompanyDetails(symbol: string) {
+  async getSecurityDetails(symbol: string) {
     const payloadId = await this.getPOSTPayloadIDForScrips();
     const payload = {
       id: payloadId,
     };
 
-    const companyId = (await this.getCompanyIdKeymap()).get(symbol);
-    if (!companyId) {
-      throw new Error(`Company symbol ${symbol} not found`);
+    const securityId = (await this.getSecuritySymbolIdKeymap()).get(symbol);
+    if (!securityId) {
+      throw new Error(`Security symbol ${symbol} not found`);
     }
 
-    return await this.requestPOSTAPI<CompanyDetails>(
-      `${this.apiEndpoints.company_details}${companyId}`,
+    return await this.requestPOSTAPI<SecurityDetails>(
+      `${this.apiEndpoints.security_details}${securityId}`,
       payload
     );
   }
 
   /**
-   * Get the company daily graph
-   * @param symbol - The symbol of the company
-   * @returns CompanyDailyGraph[]
+   * Get the security daily graph
+   * @param symbol - The symbol of the security
+   * @returns SecurityDailyGraph[]
    */
-  async getCompanyDailyGraph(symbol: string) {
+  async getSecurityDailyGraph(symbol: string) {
     const payloadId = await this.getPOSTPayloadIDForScrips();
     const payload = {
       id: payloadId,
     };
 
-    const companyId = (await this.getCompanyIdKeymap()).get(symbol);
-    if (!companyId) {
-      throw new Error(`Company symbol ${symbol} not found`);
+    const securityId = (await this.getSecuritySymbolIdKeymap()).get(symbol);
+    if (!securityId) {
+      throw new Error(`Security symbol ${symbol} not found`);
     }
 
-    return await this.requestPOSTAPI<CompanyDailyGraph[]>(
-      `${this.apiEndpoints.company_daily_graph}${companyId}`,
+    return await this.requestPOSTAPI<SecurityDailyGraph[]>(
+      `${this.apiEndpoints.security_daily_graph}${securityId}`,
       payload
     );
   }
 
   /**
-   * Get the company price volume history
-   * @param symbol - The symbol of the company
-   * @returns CompanyPriceVolumeHistory
+   * Get the security price volume history
+   * @param symbol - The symbol of the security
+   * @returns SecurityPriceVolumeHistory
    */
-  async getCompanyPriceVolumeHistory(symbol: string) {
-    const companyId = (await this.getCompanyIdKeymap()).get(symbol);
-    if (!companyId) {
-      throw new Error(`Company symbol ${symbol} not found`);
+  async getSecurityPriceVolumeHistory(symbol: string) {
+    const securityId = (await this.getSecuritySymbolIdKeymap()).get(symbol);
+    if (!securityId) {
+      throw new Error(`Security symbol ${symbol} not found`);
     }
 
-    return await this.requestGETAPI<CompanyPriceVolumeHistory>(
-      `${this.apiEndpoints.company_price_volume_history}${companyId}`
+    return await this.requestGETAPI<SecurityPriceVolumeHistory>(
+      `${this.apiEndpoints.security_price_volume_history}${securityId}`
     );
   }
 

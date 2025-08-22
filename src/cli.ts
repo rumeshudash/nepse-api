@@ -53,8 +53,8 @@ async function startServer(): Promise<void> {
     DailyIndexGraph: '/dailyIndexGraph',
     DailyNepseIndexGraph: '/dailyNepseIndexGraph',
     DailyScripPriceGraph: '/dailyScripPriceGraph',
-    CompanyPriceVolumeHistory: '/companyPriceVolumeHistory',
-    CompanyDetails: '/companyDetails',
+    SecurityPriceVolumeHistory: '/securityPriceVolumeHistory',
+    SecurityDetails: '/securityDetails',
     CompanyList: '/companyList',
     SecurityList: '/securityList',
     LiveMarket: '/liveMarket',
@@ -172,7 +172,7 @@ async function startServer(): Promise<void> {
   });
 
   app.get(
-    routes.CompanyPriceVolumeHistory,
+    routes.SecurityPriceVolumeHistory,
     async (req: Request, res: Response) => {
       try {
         const { symbol } = req.query as { symbol?: string };
@@ -181,7 +181,7 @@ async function startServer(): Promise<void> {
             .status(400)
             .json({ error: 'Symbol parameter is required' });
         }
-        const data = await nepse.getCompanyPriceVolumeHistory(symbol);
+        const data = await nepse.getSecurityPriceVolumeHistory(symbol);
         res.json(data);
       } catch (error: unknown) {
         const errorMessage =
@@ -191,13 +191,13 @@ async function startServer(): Promise<void> {
     }
   );
 
-  app.get(routes.CompanyDetails, async (req: Request, res: Response) => {
+  app.get(routes.SecurityDetails, async (req: Request, res: Response) => {
     const { symbol } = req.query as { symbol?: string };
     if (!symbol) {
       return res.status(400).json({ error: 'Symbol parameter is required' });
     }
     try {
-      const data = await nepse.getCompanyDetails(symbol);
+      const data = await nepse.getSecurityDetails(symbol);
       res.json(data);
     } catch (error: unknown) {
       const errorMessage =
@@ -322,7 +322,7 @@ async function startServer(): Promise<void> {
       if (!symbol) {
         return res.status(400).json({ error: 'Symbol parameter is required' });
       }
-      const data = await nepse.getCompanyDailyGraph(symbol);
+      const data = await nepse.getSecurityDailyGraph(symbol);
       res.json(data);
     } catch (error: unknown) {
       const errorMessage =

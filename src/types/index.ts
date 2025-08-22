@@ -239,7 +239,7 @@ export interface Headers {
 /**
  * Company details from the API
  */
-export interface CompanyDetails {
+export interface SecurityDetails {
   securityDailyTradeDto: {
     securityId: number;
     openPrice: number;
@@ -328,25 +328,25 @@ export interface CompanyDetails {
 }
 
 /**
- * Company daily graph from the API
+ * Security daily graph from the API
  */
-export interface CompanyDailyGraph {
+export interface SecurityDailyGraph {
   time: number;
   contractRate: number;
   contractQuantity: number;
 }
 
 /**
- * Company price volume history from the API
+ * Security price volume history from the API
  */
-export interface CompanyPriceVolumeHistory extends Pageable {
-  content: CompanyPriceVolumeHistoryItem[];
+export interface SecurityPriceVolumeHistory extends Pageable {
+  content: SecurityPriceVolumeHistoryItem[];
 }
 
 /**
  * Company price volume history item from the API
  */
-export interface CompanyPriceVolumeHistoryItem {
+export interface SecurityPriceVolumeHistoryItem {
   id: number;
   businessDate: string;
   openPrice: number;

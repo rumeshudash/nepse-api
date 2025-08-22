@@ -216,6 +216,22 @@ export abstract class BaseNepse {
   }
 
   /**
+   * Get the security symbol ID keymap
+   * @returns The security symbol ID keymap
+   */
+  protected async getSecuritySymbolIdKeymap(): Promise<Map<string, number>> {
+    if (!this.securitySymbolIdKeymap) {
+      this.securitySymbolIdKeymap = new Map(
+        (await this.getSecurityList()).map((security) => [
+          security.symbol,
+          security.id,
+        ])
+      );
+    }
+    return this.securitySymbolIdKeymap;
+  }
+
+  /**
    * Get the security ID keymap
    * @returns The security ID keymap
    */
