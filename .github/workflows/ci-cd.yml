@@ -113,6 +113,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -126,7 +127,7 @@ jobs:
           git config --local user.name "GitHub Action"
 
       - name: Publish to npm
-        run: yarn publish --access public
+        run: yarn publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
