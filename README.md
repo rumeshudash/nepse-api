@@ -320,16 +320,3 @@ MIT License
 ## Disclaimer
 
 This is an unofficial library and is not affiliated with NEPSE or nepalstock.com. Use at your own risk.
-
-## Changelog
-
-### v1.0.0
-- Initial release
-- TypeScript support
-- Command line interface
-- Web server functionality
-- Comprehensive error handling
-- SSL certificate handling
-- Token management
-- Dummy ID management
-- Full NEPSE API coverage
