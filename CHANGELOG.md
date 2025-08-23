@@ -5,6 +5,22 @@ All notable changes to the NEPSE API Node.js package will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2025-08-23
+
+### Fixed
+- **CLI Documentation**: Updated README.md CLI command examples to match actual CLI implementation
+  - Fixed incorrect command syntax from global options to proper subcommands
+  - Updated `--show-status` to `status` subcommand
+  - Updated `--get-floorsheet` to `floorsheet` subcommand  
+  - Updated `--start-server` to `server` subcommand
+  - Added missing examples for file output and CSV format options
+  - Added example for hiding progress bar in floorsheet command
+
+### Documentation
+- Improved CLI usage examples for better user experience
+- Added comprehensive examples for all available CLI options
+- Ensured documentation accuracy with actual implementation
+
 ## [1.0.2] - 2025-08-22
 
 ### Fixed
