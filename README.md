@@ -21,15 +21,6 @@ Unofficial Node.js library to interface with nepalstock.com. This is a TypeScrip
 npm install @rumess/nepse-api
 ```
 
-### From Source
-
-```bash
-git clone <repository-url>
-cd nepse-api
-npm install
-npm run build
-```
-
 ## Quick Start
 
 ### Basic Usage
@@ -56,16 +47,28 @@ console.log(companyList);
 nepse-cli --version
 
 # Get market status
-nepse-cli --show-status
+nepse-cli status
+
+# Get market status and save to file
+nepse-cli status --output-file status.json
+
+# Get market status in CSV format
+nepse-cli status --to-csv --output-file status.csv
+
+# Get floorsheet
+nepse-cli floorsheet
 
 # Get floorsheet and save to file
-nepse-cli --get-floorsheet --output-file floor.json
+nepse-cli floorsheet --output-file floor.json
 
 # Get floorsheet in CSV format
-nepse-cli --get-floorsheet --to-csv --output-file floor.csv
+nepse-cli floorsheet --to-csv --output-file floor.csv
+
+# Hide progress bar when getting floorsheet
+nepse-cli floorsheet --hide-progressbar
 
 # Start web server
-nepse-cli --start-server
+nepse-cli server
 ```
 
 ## API Reference
